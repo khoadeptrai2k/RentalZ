@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet } from "react-native";
 import Home from "./screens/Home";
-import Result from "./screens/Result";
+import Detail from "./screens/Detail";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
@@ -19,7 +19,7 @@ const App = () => {
         />
           <Stack.Screen
           name="Result"
-          component={Result}
+          component={Detail}
           options={{ title: 'My Result' }}
         />
       </Stack.Navigator>
@@ -34,7 +34,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-
 
 export default App;

@@ -20,10 +20,11 @@ const Home = ({navigation }) => {
     
     useEffect(() => {
       createTable();
+      checkData();
       submitted();
     }, []);
 
-    const submitted = () => {
+    const checkData = () => {
       /* AsyncStorage */
       // try {
       //   const value = await AsyncStorage.getItem("Username");
@@ -36,7 +37,7 @@ const Home = ({navigation }) => {
       /* SQLite */
       try {
         db.transaction((tx) => {
-          tx.executeSql("Home Type", [], (tx, result) => {
+          tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='table_detail'", [], (tx, result) => {
             var len = result.rows.length;
             if (len > 0) {
               navigation.navigate("Home");
@@ -48,7 +49,7 @@ const Home = ({navigation }) => {
       }
     };
   
-    const home = () => {
+    const submitted = () => {
       if (type.length === 0 || Bedrooms.length === 0 || Furniture.length === 0 || 
           show.length === 0 || price.length === 0 || note.length === 0 || name.length === 0 ) {
         Alert.alert("Warning !!!. Please  !!!");
@@ -56,24 +57,25 @@ const Home = ({navigation }) => {
         try {
           db.transaction((tx) => {
             tx.executeSql(
-              "INSERT INTO Home (Type, Bedrooms, Furniture, show, price, note, name) VALUES (?,?,?,?,?,?,?);",
+              "INSERT INTO table_detail (type_detail, bedroom_detail, furniture_detail, show_detail, price_detail, note_detail, name_detail) VALUES (?,?,?,?,?,?,?)",
               [type, Bedrooms, Furniture, show, price, note, name],
               (tx, results) => {
                 console.log(results.rowsAffected);
               }
             );
           });
-          navigation.navigate("Home");
+          navigation.navigate("Home")
         } catch (error) {
           console.log(error);
         }
       }
     };
-  
+
     const createTable = () => {
       db.transaction((tx) => {
         tx.executeSql(
-          "CREATE TABLE IF NOT EXISTS Users(Id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Type TEXT);"
+          "CREATE TABLE IF NOT EXISTS table_detail(Id INTEGER PRIMARY KEY AUTOINCREMENT, type_detail VARCHAR(255), bedroom_detail VARCHAR(255), furniture_detail VARCHAR(255), show_detail TEXT, price_detail INT(10), note_detail VARCHAR(555), name_detail VARCHAR(20))",
+          
         );
       });
     };
@@ -109,7 +111,7 @@ const Home = ({navigation }) => {
   return (
     <View style={styles.HomeContainer}>
       <TextInput value={type} style={{height:40}} placeholder="Property Type"  
-      onChangeText={(value) => setType(value)} />
+      onChangeText={(type) => setType(type)} />
       <View>
         <Text>Bedrooms</Text>
         <SelectDropdown
@@ -132,7 +134,7 @@ const Home = ({navigation }) => {
       )}
       </View>
       <TextInput style={{height:40}} placeholder="Monthly Rent Price"  
-      onChangeText={(value) => setPrice(value)} />
+      onChangeText={(price) => setPrice(price)} />
       <SelectDropdown
       	data={Furniture}
         onSelect={(selectedItem, index) => {
@@ -140,12 +142,11 @@ const Home = ({navigation }) => {
         }}
       />
       <TextInput style={{height:40}} placeholder="Monthly Rent Price"  
-      onChangeText={(value) => setNote(value)} />
+      onChangeText={(note) => setNote(note)} />
       <TextInput style={{height:40}} placeholder="Monthly Rent Price"  
-      onChangeText={(value) => setName(value)} />
+      onChangeText={(name) => setName(name)} />
       <ButtonPress
-        handlePress={home} title="Submited"
-
+        handlePress={submitted} title="Submited"
       />
       <View>
       <Text style={styles.text}>day la type cua ban :{type}</Text>

@@ -23,19 +23,11 @@ const Home = ({navigation }) => {
     }, []);
 
     const checkData = () => {
-      /* AsyncStorage */
-      // try {
-      //   const value = await AsyncStorage.getItem("Username");
-      //   if (value !== null) {
-      //     navigation.navigate("Home");
-      //   }
-      // } catch (error) {
-      //   console.log(error);
-      // }
-      /* SQLite */
+
       try {
         db.transaction((tx) => {
           tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='table_detail'", [], (tx, result) => {
+            console.log('item:', result.rowsAffected.length);
             var len = result.rows.length;
             if (len > 0) {
               navigation.navigate("Home");
@@ -77,18 +69,6 @@ const Home = ({navigation }) => {
         );
       });
     };
-    // const handleSubmit = () => {
-    //   if (type.length === 0 ){
-    //     Alert.alert()
-    //   }else{
-    //     setSubmitted(!submitted);
-    //     if(submitted){
-    //       setType("");
-    //       setMode("");
-    //       Alert.alert("Submitted")
-    //     }
-    //   };
-    // }
 
   
   
@@ -114,7 +94,7 @@ const Home = ({navigation }) => {
       <DatePicker
           style={styles.datePickerStyle}
           date={date} // Initial date from state
-          mode="datetime" // The enum of date, datetime and time
+          mode="date" // The enum of date, datetime and time
           placeholder="select date"
           format="DD-MM-YYYY"
           confirmBtnText="Confirm"

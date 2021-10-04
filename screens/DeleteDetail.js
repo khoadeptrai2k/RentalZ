@@ -6,6 +6,7 @@ import ButtonPress from "../components/ButtonPress";
 const db = SQLite.openDatabase("dbName", 1.0);
 
 const DeleteDetail = ({ navigation }) => {
+  
   const [inputDetailId, setInputDetailId] = useState('');
 
   const deleteDetail = () => {
@@ -22,13 +23,12 @@ const DeleteDetail = ({ navigation }) => {
                 [
                   {
                     text: 'Ok',
-                    onPress: () => navigation.navigate('Detail'),
+                    onPress: () => navigation.navigate('Home'),
                   },
                 ],
-                { cancelable: false }
               );
             } else {
-              alert('Please insert a valid User Id');
+              alert('Please insert a valid Detail Id');
             }
           }
         );
@@ -41,11 +41,10 @@ const DeleteDetail = ({ navigation }) => {
   return (
     <View style={styles.body}>
         <TextInput
-            placeholder="Enter User Id"
-            onChangeText={
-              (inputDetailId) => setInputDetailId(inputDetailId)
+            placeholder="Enter Detail Id"
+            onChangeText={(inputDetailId) => setInputDetailId(inputDetailId)
         }/>
-        <ButtonPress title="Delete This User" handlePress={deleteDetail} />
+        <ButtonPress title="Delete This Detail" handlePress={deleteDetail} />
   </View>
   );
 };

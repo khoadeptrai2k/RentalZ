@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import Home from "./screens/Home";
 import Detail from "./screens/Detail";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import DeleteDetail from "./functions/DeleteDetail";
 
 
 const Stack = createBottomTabNavigator();
@@ -22,6 +23,9 @@ const App = () => {
           component={Detail}
           options={{ title: 'My Result' }}
         />
+        <Stack.Screen name="DeleteDetail" 
+        component={DeleteDetail} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

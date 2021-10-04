@@ -1,7 +1,7 @@
 import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, TextInput, View, FlatList } from "react-native";
-import CustomButton from "../components/ButtonPress";
+import ButtonPress from "../components/ButtonPress";
 
 const db = SQLite.openDatabase("dbName", 1.0);
 
@@ -44,7 +44,7 @@ const Detail = ({ navigation }) => {
         <Text>Type: {item.type_detail}</Text>
         <Text>BedRooms: {item.bedroom_detail}</Text>
         <Text>Furniture: {item.furniture_detail}</Text>
-        <Text>DateTime: {item.show_detail}</Text>
+        <Text>DateTime: {item.date_detail}</Text>
         <Text>Price: {item.price_detail}</Text>
         <Text>Note: {item.note_detail}</Text>
         <Text>Name: {item.name_detail}</Text>

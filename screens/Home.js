@@ -128,6 +128,14 @@ const Home = ({navigation }) => {
       <ButtonPress
         handlePress={submitted} title="Submited"
       />
+      <ButtonPress
+        handlePress={() => navigation.navigate('Detail')}
+        title="Detail"
+      />
+      <ButtonPress
+        handlePress={() => navigation.navigate('SearchInfoDetail')}
+        title="Search"
+      />
       <View>
     </View>
     </View>

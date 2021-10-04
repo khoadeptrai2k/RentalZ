@@ -3,12 +3,11 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import Home from "./screens/Home";
 import Detail from "./screens/Detail";
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import DeleteDetail from "./screens/DeleteDetail";
+import InfoDetail from "./screens/InfoDetail";
 import SearchInfoDetail from "./screens/SearchInfoDetail";
+import { createStackNavigator } from '@react-navigation/stack'
 
-const Stack = createBottomTabNavigator();
-
+const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
@@ -19,12 +18,12 @@ const App = () => {
           options={{ title: 'My home' }}
         />
           <Stack.Screen
-          name="Result"
+          name="Detail"
           component={Detail}
-          options={{ title: 'My Result' }}
+          options={{ title: 'My Detail' }}
         />
-        <Stack.Screen name="DeleteDetail" 
-        component={DeleteDetail} />
+        <Stack.Screen name="InfoDetail" 
+        component={InfoDetail} />
         <Stack.Screen name="SearchInfoDetail" 
         component={SearchInfoDetail} />
 

@@ -17,10 +17,11 @@ const App = () => {
           component={Home}
           options={{ title: 'My home' }}
         />
-          <Stack.Screen
+          <Stack.Screen      
           name="Detail"
           component={Detail}
           options={{ title: 'My Detail' }}
+
         />
         <Stack.Screen name="InfoDetail" 
         component={InfoDetail} />

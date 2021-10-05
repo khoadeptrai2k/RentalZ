@@ -12,17 +12,19 @@ const ButtonPress = (props) => {
 
 const styles = StyleSheet.create({
     button:{
+        width: 100 ,height: 40,
         elevation: 8,
         backgroundColor: "black",
         borderRadius: 10,
         paddingVertical: 10,
-        paddingHorizontal: 12
+        paddingHorizontal: 10,
+        alignItems: "center",
     },
     text:{
-        fontSize:20,
+        fontSize:17,
         color:"white",
         fontWeight:"bold",
-        textTransform: "uppercase"
+        textTransform: "uppercase",
         }   
 });
 export default ButtonPress;

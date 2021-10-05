@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     },
 
     text:{
-        fontSize: 22,
+        fontSize: 30,
         textTransform: "uppercase",
         color: "black",
         fontWeight: "bold",

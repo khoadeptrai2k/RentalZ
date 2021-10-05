@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet, Button, Platform, TextInput, Alert, SnapshotViewIOSComponent } from "react-native";
+import { View, StyleSheet, Alert,  } from "react-native";
 import React, {useEffect, useState} from 'react';
-import DatePicker from 'react-native-datepicker';import SelectDropdown from "react-native-select-dropdown";
+import DatePicker from 'react-native-datepicker';
 import ButtonPress from "../components/ButtonPress";
 import {Picker} from '@react-native-picker/picker';
 import * as SQLite from "expo-sqlite";
+import TextInput from "../components/TextInput"
+import Text from "../components/Text"
 
 const db = SQLite.openDatabase("dbName", 1.0);
 
@@ -19,7 +21,6 @@ const Home = ({navigation }) => {
     useEffect(() => {
       createTable();
       checkData();
-      submitted();
     }, []);
 
     const checkData = () => {
@@ -74,14 +75,16 @@ const Home = ({navigation }) => {
   
   return (
     <View style={styles.HomeContainer}>
-      
+
+      <Text text="Property Type"/>
       <TextInput value={type} style={{height:40}} placeholder="Property Type"  
       onChangeText={(type) => setType(type)} />
       
-      <Picker
+      <Text text="Bedrooms"/>
+      <Picker   itemStyle={{height:40}}
                 selectedValue={Bedrooms}
-                style={{ width: 150,
-                        marginTop: 10, borderWidth: 1,borderRadius: 3,
+                style={{width: "90%", padding:5, borderColor: "gray",
+                         borderWidth: 1,borderRadius: 10, paddingBottom:5,
                       }}
                 onValueChange={(itemValue, itemIndex) => setBedroom(itemValue)}>
                 <Picker.Item label="Bedrooms" value="" />
@@ -90,9 +93,13 @@ const Home = ({navigation }) => {
                 <Picker.Item label="3 bedrooms" value="room3" />
       </Picker>
 
-      <View>
+      <Text text="Date Booking"/>
       <DatePicker
-          style={styles.datePickerStyle}
+          style={{backgroundColor: 'white',
+                  width: "90%", padding:5,
+                  borderWidth: 1,borderRadius: 10,
+                  borderColor: "gray",
+                  paddingBottom:5,}}
           date={date} // Initial date from state
           mode="date" // The enum of date, datetime and time
           placeholder="select date"
@@ -102,17 +109,19 @@ const Home = ({navigation }) => {
           onDateChange={(date) => {
             setDate(date);
           }}
-        />
-      </View>
+      />
+
+      <Text text="Price Monthly"/>
       <TextInput style={{height:40}} placeholder="Monthly Rent Price"  
       onChangeText={(price) => setPrice(price)} />
       
-      <Picker
-                mode='dialog'
+      <Text text="Furniture"/>
+      <Picker   itemStyle={{height:40}}
                 selectedValue={Furniture}
-                style={{ width: 150,
-                        marginTop: 10, borderWidth: 1,borderRadius: 3,
-                      }}
+                style={{ width: "90%", padding:5, paddingBottom:5,
+                         borderWidth: 1,borderRadius: 10, backgroundColor: '#FFFFFF',
+                  borderColor: "gray",
+                }}
                 onValueChange={(itemValue, itemIndex) => setFurniture(itemValue)}>
 
                 <Picker.Item label="Furnitures" value="" />
@@ -121,43 +130,47 @@ const Home = ({navigation }) => {
                 <Picker.Item label="Modern" value="Modern" />
       </Picker>
 
-      <TextInput style={{height:40}} placeholder="Note"  
+      <Text text="Note"/>
+      <TextInput style={{height:40}} numberOfLines={5} 
+      multiline={true} placeholder="Note"  
       onChangeText={(note) => setNote(note)} />
+      
+      <Text text="Name of the Reported"/>      
       <TextInput style={{height:40}} placeholder="Name"  
       onChangeText={(name) => setName(name)} />
-      <ButtonPress
-        handlePress={submitted} title="Submited"
-      />
-      <ButtonPress
-        handlePress={() => navigation.navigate('Detail')}
-        title="Detail"
-      />
-      <ButtonPress
-        handlePress={() => navigation.navigate('SearchInfoDetail')}
-        title="Search"
-      />
-      <View>
-    </View>
-    </View>
+      
+      <View style={styles.CustomButton}>
+        <ButtonPress 
+          handlePress={submitted} title="Submit"
+        />
+        <ButtonPress 
+          handlePress={() => navigation.navigate('Detail')}
+          title="Detail"
+        />
+        <ButtonPress 
+          handlePress={() => navigation.navigate('SearchInfoDetail')}
+          title="Search"
+        />
+      </View>
+  </View>
   );
 };
 
 const styles = StyleSheet.create({
   HomeContainer: {
-    paddingLeft: 20,
+    paddingLeft: 30,
     flex: 1,
-    alignItems: "baseline",
-    justifyContent: "space-around",
-    backgroundColor: "#fff",
+    // alignItems: "center",
+    backgroundColor: "white",
   },
-  ButtonStyle: {
-    backgroundColor: "red",
-    alignItems: "center",
-  },
-  datePickerStyle: {
-    width: 200,
-    marginTop: 20,
-  },
+  CustomButton:{
+    paddingRight: 35,
+    flex:1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent:'space-around'
+  }
+
 });
 
 export default Home;

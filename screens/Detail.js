@@ -1,9 +1,9 @@
-import * as SQLite from "expo-sqlite";
 import React, { useEffect, useState } from "react";
 import {TouchableOpacity, Alert, StyleSheet, Text, TextInput, View, FlatList } from "react-native";
 import ButtonPress from "../components/ButtonPress";
+import {DatabaseConnected} from '../database/database'
 
-const db = SQLite.openDatabase("dbName", 1.0);
+const db =  DatabaseConnected.getConnection()
 
 const Detail = ({ navigation }) => {
     const [listDetail, setListDetail] = useState([])
@@ -12,7 +12,7 @@ const Detail = ({ navigation }) => {
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_detail',
+        'SELECT * FROM detail',
         [],
         (tx, results) => {
           var detailItemp = [];
@@ -45,7 +45,6 @@ const Detail = ({ navigation }) => {
         <Text>Type: {item.type_detail}</Text>
         <Text>BedRooms: {item.bedroom_detail}</Text>
         <Text>Furniture: {item.furniture_detail}</Text>
-        <Text>DateTime: {item.date_detail}</Text>
       </View>
       </TouchableOpacity>
     );

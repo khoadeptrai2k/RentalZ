@@ -1,9 +1,9 @@
-import * as SQLite from "expo-sqlite";
 import React from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import ButtonPress from '../components/ButtonPress';
+import {DatabaseConnected} from '../database/database'
 
-const db = SQLite.openDatabase("dbName", 1.0);
+const db =  DatabaseConnected.getConnection()
 
 const showDetail = ({ route, navigation }) => {
   const {item} = route.params
@@ -12,16 +12,17 @@ const showDetail = ({ route, navigation }) => {
         try {
           db.transaction((tx) => {
             tx.executeSql(
-              "DELETE FROM table_detail WHERE Id = ?",
+              "DELETE FROM detail WHERE Id = ?",
               [item.Id],
               (tx, result) => {
-                alert("Deleted !!!");
+                Alert.alert("Deleted !!!");
               }
             );
           });
         } catch (error) {
           console.log(error);
         }
+        navigation.navigate("Home");
       };
 
   return (
@@ -35,7 +36,7 @@ const showDetail = ({ route, navigation }) => {
         <Text>{item.price_detail}</Text>
         <Text>{item.note_detail}</Text>
         <Text>{item.name_detail}</Text>
-      <ButtonPress title="Delete This Detail" handlePress={deleteDetail} />
+      <ButtonPress title="Delete" handlePress={deleteDetail} />
     </View>
     </View>
   );

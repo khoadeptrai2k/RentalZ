@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Text, View, SafeAreaView, TextInput } from 'react-native';
-import * as SQLite from "expo-sqlite";
 import ButtonPress from '../components/ButtonPress';
+import {DatabaseConnected} from '../database/database'
 
-const db = SQLite.openDatabase("dbName", 1.0);
+const db =  DatabaseConnected.getConnection()
 
 const viewDetail = () => {
   const [inputResultType, setInputResultType] = useState('');
@@ -14,7 +14,7 @@ const viewDetail = () => {
     setDetailData({});
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_detail where type_detail = ?',
+        'SELECT * FROM detail where type_detail = ?',
         [inputResultType],
         (tx, results) => {
           var leng = results.rows.length;

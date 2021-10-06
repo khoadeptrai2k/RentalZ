@@ -1,10 +1,10 @@
-import { View, StyleSheet, Alert,  } from "react-native";
+import { Text, View, StyleSheet, Alert,  } from "react-native";
 import React, {useEffect, useState} from 'react';
 import DatePicker from 'react-native-datepicker';
 import ButtonPress from "../components/ButtonPress";
 import {Picker} from '@react-native-picker/picker';
 import TextInput from "../components/TextInput"
-import Text from "../components/Text"
+// import Text from "../components/Text"
 import {DatabaseConnected} from '../database/database'
 
 const db =  DatabaseConnected.getConnection()

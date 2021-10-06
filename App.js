@@ -6,6 +6,7 @@ import Detail from "./screens/Detail";
 import InfoDetail from "./screens/InfoDetail";
 import SearchInfoDetail from "./screens/SearchInfoDetail";
 import { createStackNavigator } from '@react-navigation/stack'
+import editInfoDetail from "./screens/EditInfoDetail";
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -27,6 +28,10 @@ const App = () => {
         component={InfoDetail} />
         <Stack.Screen name="SearchInfoDetail" 
         component={SearchInfoDetail} />
+        <Stack.Screen
+        name="EditInfoDetail" 
+        component={editInfoDetail}
+        />
 
       </Stack.Navigator>
     </NavigationContainer>

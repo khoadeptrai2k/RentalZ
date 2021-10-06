@@ -14,7 +14,7 @@ const viewDetail = () => {
     setDetailData({});
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM detail where type_detail = ?',
+        'SELECT * FROM Detail where type_detail = ?',
         [inputResultType],
         (tx, results) => {
           var leng = results.rows.length;

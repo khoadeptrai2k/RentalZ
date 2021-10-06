@@ -16,6 +16,7 @@ const TextInputCustom = (props) => {
           onChangeText={props.onChangeText}
           numberOfLines={props.numberOfLines}
           style={props.style}
+          value={props.value}
           multiline={props.multiline}
         />
       </View>

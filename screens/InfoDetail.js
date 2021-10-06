@@ -22,7 +22,7 @@ const showDetail = ({ route, navigation }) => {
       try {
         db.transaction((tx) => {
           tx.executeSql(
-            "DELETE FROM detail WHERE Id = ?",
+            "DELETE FROM Detail WHERE Id = ?",
             [item.Id],
             (tx, result) => {
               alert("Deleted !!!");

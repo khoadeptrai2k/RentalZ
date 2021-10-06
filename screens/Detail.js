@@ -12,7 +12,7 @@ const Detail = ({ navigation }) => {
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM detail',
+        'SELECT * FROM Detail',
         [],
         (tx, results) => {
           var detailItemp = [];

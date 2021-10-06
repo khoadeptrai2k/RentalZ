@@ -31,31 +31,45 @@ const editInfoDetail = ({route, navigation }) => {
 
   // type_detail, bedroom_detail, furniture_detail,
   // date_detail, price_detail, note_detail, name_detail
-    const editInfoDetail = () => {
-        if (type.length === 0 || Bedrooms.length === 0 || Furniture.length === 0 || 
-            date.length === 0 || price.length === 0 || note.length === 0 || name.length === 0 ) {
-          Alert.alert("Warning !!!. Please  !!!");
+    const editInfo = () => {
+        if(!type) {
+            alert("Please enter property type !")
+            return
+        }
+        if(!Bedrooms) {
+            alert("Please enter bedrooms !")
+            return
+        }
+        if(!date) {
+            alert("Please enter date and time !")
+            return
+        }
+        if(!price) {
+            alert("Please enter monthly rent price !")
+            return
+        }
+        if(!name) {
+            alert("Please enter your name or reporter !")
+            return
         } else {
-            try{
                 db.transaction((tx) => {
-                tx.executeSql('UPDATE detail set type_detail=?, bedroom_detail=?, date_detail=?, price_detail=?, furniture_detail=?, note_detail, name_detail, where Id=?',
+                tx.executeSql('UPDATE Detail SET type_detail = ? , bedroom_detail = ? , date_detail = ? , price_detail = ? , furniture_detail = ? , note_detail = ? , name_detail = ? where Id = ?',
                 [type, Bedrooms, date, price, Furniture, note, name, detailId], 
-                (tx, result) => {
+                (tx, results) => {
                     console.log('Results', results.rowsAffected);
-            
           });
         });
+        navigation.navigate("Home")
         navigation.navigate("Detail")
-            }catch (error) {
-            console.log(error);}
     };
     };
     return(
     <View style={{flex :1, backgroundColor: 'white'}}>
      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      
       <Text text="Property Type"/>
-      <TextInput value={type} style={{height:40}} placeholder="Enter Your Property Type"  
-      onChangeText={(text) => setType(text)} />
+      <TextInput value={type} style={{height:40}}
+      onChangeText={(type) => setType(type)} />
       
       <Text text="Bedrooms"/>
       <Picker   itemStyle={{height:40}}
@@ -90,8 +104,8 @@ const editInfoDetail = ({route, navigation }) => {
       />
 
       <Text text="Price Monthly"/>
-      <TextInput style={{height:40}} placeholder="Monthly Rent Price"  
-      onChangeText={(price) => setPrice(price)} value={price} />
+      <TextInput style={{height:40}}
+      onChangeText={(price) => setPrice(price)} value={price.toString()} />
       
       <Text text="Furniture"/>
       <Picker   selectedValue={Furniture}
@@ -111,14 +125,14 @@ const editInfoDetail = ({route, navigation }) => {
 
       <Text text="Note"/>
       <TextInput value={note} style={{height:40}} numberOfLines={5} 
-      multiline={true} placeholder="Note"  
+      multiline={true}  
       onChangeText={(note) => setNote(note)} />
       
       <Text text="Name of the Reported"/>      
-      <TextInput value={name} style={{height:40}} placeholder="Name"  
+      <TextInput value={name} style={{height:40}} 
       onChangeText={(name) => setName(name)} /> 
         
-        <ButtonPress title="Edit" handlePress={editInfoDetail}/>
+        <ButtonPress title="Edit" handlePress={editInfo}/>
 
     </View>
     </View>

@@ -1,10 +1,10 @@
-import { Text, View, StyleSheet, Alert,  } from "react-native";
+import { View, StyleSheet, Alert,  } from "react-native";
 import React, {useEffect, useState} from 'react';
 import DatePicker from 'react-native-datepicker';
 import ButtonPress from "../components/ButtonPress";
 import {Picker} from '@react-native-picker/picker';
 import TextInput from "../components/TextInput"
-// import Text from "../components/Text"
+import Text from "../components/Text"
 import {DatabaseConnected} from '../database/database'
 
 const db =  DatabaseConnected.getConnection()
@@ -27,7 +27,7 @@ const Home = ({navigation }) => {
 
       try {
         db.transaction((tx) => {
-          tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='detail'", [], (tx, result) => {
+          tx.executeSql("SELECT name FROM sqlite_master WHERE type='table' AND name='Detail'", [], (tx, result) => {
             console.log('item:', result.rowsAffected.length);
             var len = result.rows.length;
             if (len > 0) {
@@ -48,7 +48,7 @@ const Home = ({navigation }) => {
         try {
           db.transaction((tx) => {
             tx.executeSql(
-              "INSERT INTO detail (type_detail, bedroom_detail, furniture_detail, date_detail, price_detail, note_detail, name_detail) VALUES (?,?,?,?,?,?,?)",
+              "INSERT INTO Detail (type_detail, bedroom_detail, furniture_detail, date_detail, price_detail, note_detail, name_detail) VALUES (?,?,?,?,?,?,?)",
               [type, Bedrooms, Furniture, date, price, note, name],
               (tx, results) => {
                 console.log(results.rowsAffected);
@@ -65,7 +65,7 @@ const Home = ({navigation }) => {
     const createTable = () => {
       db.transaction((tx) => {
         tx.executeSql(
-          "CREATE TABLE IF NOT EXISTS detail(Id INTEGER PRIMARY KEY AUTOINCREMENT, type_detail VARCHAR(255), bedroom_detail VARCHAR(255), furniture_detail VARCHAR(255), date_detail VARCHAR(255), price_detail INT(10), note_detail VARCHAR(555), name_detail VARCHAR(20))",
+          "CREATE TABLE IF NOT EXISTS Detail(Id INTEGER PRIMARY KEY AUTOINCREMENT, type_detail VARCHAR(255), bedroom_detail VARCHAR(255), furniture_detail VARCHAR(255), date_detail VARCHAR(255), price_detail INT(10), note_detail VARCHAR(555), name_detail VARCHAR(20))",
           
         );
       });

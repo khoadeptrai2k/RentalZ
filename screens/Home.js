@@ -6,6 +6,7 @@ import {Picker} from '@react-native-picker/picker';
 import TextInput from "../components/TextInput"
 import Text from "../components/Text"
 import {DatabaseConnected} from '../database/database'
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const db =  DatabaseConnected.getConnection()
 

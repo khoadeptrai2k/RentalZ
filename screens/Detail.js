@@ -40,7 +40,8 @@ const Detail = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("InfoDetail", { item })}>
       <View
         key={item.Id}
-        style={{ backgroundColor: 'white', padding: 20 }}>
+        style={{ backgroundColor: 'white', padding: 20, flexDirection: "column",  
+        flexWrap: "wrap", }}>
         <Text>Id: {item.Id}</Text>
         <Text>Type: {item.type_detail}</Text>
         <Text>BedRooms: {item.bedroom_detail}</Text>
@@ -65,15 +66,18 @@ const Detail = ({ navigation }) => {
 const styles = StyleSheet.create({
   body: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+
+    borderRadius: 4,
+    
   },
+  
   text: {
     fontSize: 40,
     fontWeight: "bold",
     margin: 10,
-    justifyContent: "center",
+    justifyContent: "flex-start",
     textAlign: "center",
+
   },
   input: {
     borderWidth: 1,

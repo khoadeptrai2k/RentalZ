@@ -7,6 +7,8 @@ import TextInput from "../components/TextInput"
 import Text from "../components/Text"
 import {DatabaseConnected} from '../database/database'
 import { SafeAreaView } from "react-native-safe-area-context";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+
 
 const db =  DatabaseConnected.getConnection()
 
@@ -75,8 +77,8 @@ const Home = ({navigation }) => {
   
   
   return (
-    <View style={styles.HomeContainer}>
-
+    <SafeAreaView style={styles.HomeContainer}>
+    <View style={styles.Body}>
       <Text text="Property Type"/>
       <TextInput value={type} style={{height:40}} placeholder="Property Type"  
       onChangeText={(type) => setType(type)} />
@@ -154,6 +156,7 @@ const Home = ({navigation }) => {
         />
       </View>
   </View>
+  </SafeAreaView>
   );
 };
 
@@ -164,7 +167,12 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     backgroundColor: "white",
   },
+  Body:{
+    height: hp('50%'), // 70% of height device screen
+    width: wp('90%')   // 80% of width device screen
+  },
   CustomButton:{
+    marginTop: 40,
     paddingRight: 35,
     flex:1,
     alignItems: 'center',

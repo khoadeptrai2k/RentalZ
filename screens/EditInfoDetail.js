@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import {View,Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import TextInput from "../components/TextInput"
 import { DatabaseConnected } from '../database/database';
 import ButtonPress from '../components/ButtonPress';
 import DatePicker from 'react-native-datepicker';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Text from "../components/Text"
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const db = DatabaseConnected.getConnection()
   
@@ -64,8 +68,8 @@ const editInfoDetail = ({route, navigation }) => {
     };
     };
     return(
-    <View style={{flex :1, backgroundColor: 'white'}}>
-     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+    <SafeAreaView style={styles.EditInfoContainer}>
+     <View style={styles.Body}>
       
       <Text text="Property Type"/>
       <TextInput value={type} style={{height:40}}
@@ -131,11 +135,36 @@ const editInfoDetail = ({route, navigation }) => {
       <Text text="Name of the Reported"/>      
       <TextInput value={name} style={{height:40}} 
       onChangeText={(name) => setName(name)} /> 
-        
-        <ButtonPress title="Edit" handlePress={editInfo}/>
-
+      
+      <View style={styles.CustomButton}>
+      <ButtonPress title="Edit" handlePress={editInfo}/>
+      </View>
+      
     </View>
-    </View>
+    </SafeAreaView>
     );
 };
+
+const styles = StyleSheet.create({
+  EditInfoContainer: {
+    paddingLeft: 30,
+    flex: 1,
+    // alignItems: "center",
+    backgroundColor: "white",
+  },
+  Body:{
+    height: hp('50%'), // 70% of height device screen
+    width: wp('90%')   // 80% of width device screen
+  },
+  CustomButton:{
+    marginTop: 40,
+    paddingRight: 35,
+    flex:1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent:'space-around'
+  }
+
+});
+
 export default editInfoDetail;

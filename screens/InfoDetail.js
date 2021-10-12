@@ -39,34 +39,51 @@ const showDetail = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-        <View style={styles.listItem}>
-          <Text style={styles.textHeader}>Id </Text>
-          <Text style={styles.textBottom}>{item.Id}</Text>
+          
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Id: </Text>
+            <Text style={styles.textItem}>{item.Id}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Property type</Text>
-          <Text style={styles.textBottom}>{item.type_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Property type: </Text>
+            <Text style={styles.textItem}>{item.type_detail}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Bedrooms</Text>
-          <Text style={styles.textBottom}>{item.bedroom_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Bedrooms: </Text>
+            <Text style={styles.textItem}>{item.bedroom_detail}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Date</Text>
-          <Text style={styles.textBottom}>{item.date_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Date: </Text>
+            <Text style={styles.textItem}>{item.date_detail}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Monthly price</Text>
-          <Text style={styles.textBottom}>{item.price_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Monthly price: </Text>
+            <Text style={styles.textItem}>{item.price_detail}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Furniture</Text>
-          <Text style={styles.textBottom}>{item.furniture_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Furniture: </Text>
+            <Text style={styles.textItem}>{item.furniture_detail}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Notes</Text>
-          <Text style={styles.textBottom}>{item.note_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Notes: </Text>
+            <Text style={styles.textItem}>{item.note_detail}</Text>
+          </View>
 
-          <Text style={styles.textHeader}>Name of the reporter</Text>
-          <Text style={styles.textBottom}>{item.name_detail}</Text>
+          <View style={styles.viewItem}>
+            <Text style={styles.header}>Name of the reporter: </Text>
+            <Text style={styles.textItem}>{item.name_detail}</Text>
+          </View>
 
-      <ButtonPress title="Edit" handlePress={() => editDetail(item.Id, item.type_detail, item.bedroom_detail, item.date_detail, item.price_detail, item.furniture_detail, item.note_detail, item.name_detail)}/>
-      <ButtonPress title="Delete" handlePress={deleteDetail} />
-      </View>
+          <View style={styles.CustomButton}>
+            <ButtonPress title="Edit" handlePress={() => editDetail(item.Id, item.type_detail, item.bedroom_detail, item.date_detail, item.price_detail, item.furniture_detail, item.note_detail, item.name_detail)}/>
+            <ButtonPress title="Delete" handlePress={deleteDetail} />
+          </View>
     </View>
   );
 };
@@ -76,17 +93,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
-  listItem: {
-    padding: 10,
-    borderRadius: 10,
-    marginTop: 10,
-    backgroundColor: 'white',
+  viewItem:{
+    flexDirection: "row",
   },
-  textHeader: {
+  header: {
     color: '#111',
-    fontSize: 15,
+    fontSize: 20,
     fontWeight: 'bold',
   },
+  textItem: {
+    color: "black",
+    fontSize: 20,
+  },
+  CustomButton:{
+    marginTop: 40,
+    paddingRight: 35,
+    flex:1,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent:'space-around'
+  }
 });
 
 export default showDetail;

@@ -44,9 +44,29 @@ const Home = ({navigation }) => {
     };
   
     const submitted = () => {
-      if (type.length === 0 || Bedrooms.length === 0 || Furniture.length === 0 || 
-          date.length === 0 || price.length === 0 || note.length === 0 || name.length === 0 ) {
-        Alert.alert("Warning !!!. Please  !!!");
+    if(!type) {
+        alert("Please enter property type !")
+        return
+    }
+    if(!Bedrooms) {
+        alert("Please choose bedrooms !")
+        return
+    }
+    if(!date) {
+        alert("Please pick date and time !")
+        return
+    }
+    if(!price) {
+        alert("Please enter monthly rent price !")
+        return
+    }
+    if(!Furniture){
+        alert("Please choose Furniture !")
+        return
+    }
+    if(!name) {
+        alert("Please enter your name or reporter !")
+        return
       } else {
         try {
           db.transaction((tx) => {
@@ -79,6 +99,7 @@ const Home = ({navigation }) => {
   return (
     <SafeAreaView style={styles.HomeContainer}>
     <View style={styles.Body}>
+      
       <Text text="Property Type"/>
       <TextInput value={type} style={{height:40}} placeholder="Property Type"  
       onChangeText={(type) => setType(type)} />

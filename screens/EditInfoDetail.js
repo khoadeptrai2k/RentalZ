@@ -128,7 +128,7 @@ const editInfoDetail = ({route, navigation }) => {
       </Picker>
 
       <Text text="Note"/>
-      <TextInput value={note} style={{height:40}} numberOfLines={5} 
+      <TextInput value={note} style={{height:100}} numberOfLines={5} 
       multiline={true}  
       onChangeText={(note) => setNote(note)} />
       

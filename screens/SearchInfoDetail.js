@@ -47,13 +47,21 @@ const viewDetail = () => {
               marginRight: 35,
               marginTop: 10
             }}>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Id</Text>
                 <Text>{detailData.Id}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Property Type</Text>
                 <Text>{detailData.type_detail}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>BedRoom</Text>
                 <Text>{detailData.bedroom_detail}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Furniture</Text>
                 <Text>{detailData.furniture_detail}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Date Time</Text>
                 <Text>{detailData.date_detail}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Price</Text>
                 <Text>{detailData.price_detail}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Notes</Text>
                 <Text>{detailData.note_detail}</Text>
+                <Text style={{fontSize: 20, fontWeight: "bold", }}>Name Reporter</Text>
                 <Text>{detailData.name_detail}</Text>
           </View>
         </View>

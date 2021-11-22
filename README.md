@@ -1,2 +1,2 @@
 # RentalZ
-COMP1786_001197009_Coursework
+COMP1786_001197009_Coursework_HybridApp
